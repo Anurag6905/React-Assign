@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import '../CSS/Assign2.css'
 
 interface todo {
@@ -34,6 +34,17 @@ const Assign2 = () => {
             )
         )
     }
+
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos))
+    },[todos])
+
+    useEffect(() => {
+        const data = localStorage.getItem("todos")
+        if(data){
+            SetTodos(JSON.parse(data));
+        }
+    },[])
 
     return(
         <>
